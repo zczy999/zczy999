@@ -1,4 +1,4 @@
-### Hi there 👋
+### 一个初入门的程序员
 
 <!--
 **zczy999/zczy999** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
