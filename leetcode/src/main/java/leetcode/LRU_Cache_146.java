@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.util.HashMap;
 
 public class LRU_Cache_146 {

@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,7 +47,6 @@ public class Two_Sum_1 {
     }
 
     public static void main(String[] args) {
-        Lock
 //        Date date = new Date();
         String tsStr = "2011-05-09 11:49:45.999";
         Date  date = Timestamp.valueOf(tsStr);
