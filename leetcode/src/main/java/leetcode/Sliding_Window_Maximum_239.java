@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class Sliding_Window_Maximum_239 {
@@ -37,5 +40,39 @@ public class Sliding_Window_Maximum_239 {
         return res;
     }
 
+    /**
+     * 使用双向队列
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int[] maxSlidingWindow1(int[] nums, int k) {
+        Deque<Integer> deque = new ArrayDeque<>();
+        // 双向队列两种实现类
+        Deque<Integer> deque1 = new LinkedList<>();
+
+        for (int i = 0; i < k; i++) {
+            while (deque.peekLast() != null && nums[deque.peekLast()] <= nums[i]) {
+                deque.pollLast();
+            }
+            deque.addLast(i);
+        }
+        int[] res = new int[nums.length - k + 1];
+        res[0] = nums[deque.peekFirst()];
+        for (int i = k; i < nums.length; i++) {
+            while (deque.peekLast() != null && nums[deque.peekLast()] <= nums[i]) {
+                deque.pollLast();
+            }
+            deque.addLast(i);
+            while (deque.peekFirst() <= i - k) {
+                deque.pollFirst();
+            }
+            res[i - k + 1] = nums[deque.peekFirst()];
+
+        }
+
+        return res;
+    }
 
 }
