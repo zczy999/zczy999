@@ -5,6 +5,7 @@ import java.util.*;
 public class Number_of_Islands_200 {
 
     /**
+     * 使用BFS
      * 注意二维坐标转换时为 i*m + j,感觉还是麻烦了，不如再来个二维数组flag[][]
      * @param grid
      * @return
