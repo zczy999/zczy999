@@ -48,12 +48,40 @@ public class FileIoTest {
         }
     }
 
+    /**
+     * 批量更改文件名
+     * @param files
+     */
+    public void reNameFile(List<File> files) {
+        for(File file : files){
+            String name = file.getName();
+            String unwantedString = "| 值得所有学生收藏，推荐学习！（含课件讲义）";
+            if(name.contains(unwantedString)){
+                // 删除文件名中的一部分
+                String newName = name.replace(unwantedString, "");
+
+                // 创建修改后的文件路径
+                String renamedFilePath = file.getParent() + File.separator + newName;
+                File renamedFile = new File(renamedFilePath);
+
+                // 重命名文件
+                boolean success = file.renameTo(renamedFile);
+                if (success) {
+                    System.out.println("文件已成功重命名！名字为："+ newName);
+                } else {
+                    System.out.println("文件重命名失败，请检查文件权限和路径。");
+                }
+
+            }
+        }
+    }
+
     public static void main(String[] args) {
         FileIoTest fileIoTest = new FileIoTest();
 //        fileIoTest.copyFileTest();
-        List<File> files = fileIoTest.listFileTest(new File("/Users/tsymq/logs"));
-        for(File file : files){
-            System.out.println(file);
-        }
+        List<File> files = fileIoTest.listFileTest(new File("/Users/tsymq/Desktop/baiduyun/博弈论"));
+        fileIoTest.reNameFile(files);
     }
+
+
 }
