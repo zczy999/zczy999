@@ -1,0 +1,4 @@
+spring:
+  redis:
+    password: xdclass.net
+    host: 120.48.94.78
