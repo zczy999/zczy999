@@ -12,6 +12,7 @@
         <module>leetcode</module>
         <module>jdk</module>
         <module>spring-redis</module>
+        <module>tsymq-flink</module>
     </modules>
 
     <properties>
