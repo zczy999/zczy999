@@ -55,7 +55,7 @@ public class FileIoTest {
     public void reNameFile(List<File> files) {
         for(File file : files){
             String name = file.getName();
-            String unwantedString = "| 值得所有学生收藏，推荐学习！（含课件讲义）";
+            String unwantedString = "[樱花论坛 www.sakuraaaa.com]";
             if(name.contains(unwantedString)){
                 // 删除文件名中的一部分
                 String newName = name.replace(unwantedString, "");
@@ -79,7 +79,7 @@ public class FileIoTest {
     public static void main(String[] args) {
         FileIoTest fileIoTest = new FileIoTest();
 //        fileIoTest.copyFileTest();
-        List<File> files = fileIoTest.listFileTest(new File("/Users/tsymq/Desktop/baiduyun/博弈论"));
+        List<File> files = fileIoTest.listFileTest(new File("/Users/tsymq/Desktop/jvm"));
         fileIoTest.reNameFile(files);
     }
 
