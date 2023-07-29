@@ -13,6 +13,7 @@
         <module>jdk</module>
         <module>spring-redis</module>
         <module>tsymq-flink</module>
+        <module>tsymq-netty</module>
     </modules>
 
     <properties>
