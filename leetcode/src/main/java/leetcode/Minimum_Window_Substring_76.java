@@ -14,6 +14,49 @@ public class Minimum_Window_Substring_76 {
     }
 
     public String minWindow(String s, String t) {
+        int[] need = new int[128];
+        int[] have = new int[128];
+
+        for (int i = 0; i < t.length(); i++) {
+            need[t.charAt(i)]++;
+        }
+
+        int left = 0, right = 0, start = 0;
+        int distance = 0;
+        int min = Integer.MAX_VALUE;
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            if (need[c] == 0) {
+                right++;
+                continue;
+            }
+            if (have[c] < need[c]) {
+                distance++;
+            }
+            have[c]++;
+
+            while (distance == t.length()) {
+                if ((right - left + 1) < min) {
+                    min = right - left + 1;
+                    start = left;
+                }
+                char ch = s.charAt(left);
+                if (need[ch] == 0) {
+                    left++;
+                    continue;
+                }
+                if (need[ch] == have[ch]) {
+                    distance--;
+                }
+                have[ch]--;
+                left++;
+            }
+            right++;
+        }
+        return min != Integer.MAX_VALUE ? s.substring(start, start + min) : "";
+    }
+
+    public String minWindow2(String s, String t) {
         if (s == null || s.length() == 0 || t == null || t.length() == 0) return "";
         int[] need = new int[128];
         for (int i = 0; i < t.length(); i++) {
