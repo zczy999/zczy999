@@ -3,14 +3,112 @@ package leetcode;
 import java.util.*;
 
 public class Number_of_Islands_200 {
+    int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     /**
-     * 使用BFS
-     * 注意二维坐标转换时为 i*m + j,感觉还是麻烦了，不如再来个二维数组flag[][]
+     * dfs
+     *
      * @param grid
      * @return
      */
     public int numIslands(char[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int sum = 0;
+        int[][] flag = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (flag[i][j] == 1 || grid[i][j] == '0') {
+                    continue;
+                }
+                sum++;
+                dfs(i, j, flag, grid);
+            }
+        }
+        return sum;
+    }
+
+    private void dfs(int i, int j, int[][] flag, char[][] grid) {
+        int n = flag.length;
+        int m = flag[0].length;
+        if (i >= n || i < 0 || j >= m || j < 0 || flag[i][j] == 1 || grid[i][j] == '0') {
+            return;
+        }
+        flag[i][j] = 1;
+        for (int[] dir : directions) {
+            int nexti = i + dir[0];
+            int nextj = j + dir[1];
+            dfs(nexti, nextj, flag, grid);
+        }
+
+    }
+
+    /**
+     * bfs
+     *
+     * @param grid
+     * @return
+     */
+    public int numIslands1(char[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int sum = 0;
+        int[][] flag = new int[n][m];
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (flag[i][j] == 1 || grid[i][j] == '0') {
+                    continue;
+                }
+                sum++;
+                int res = i * m + j;
+                queue.add(res);
+                flag[i][j] = 1;
+                while (!queue.isEmpty()) {
+                    Integer poll = queue.poll();
+                    int pollRow = poll / m;
+                    int pollLine = poll % m;
+                    for (int[] point : getNextPoint(pollRow, pollLine, n, m)) {
+                        int pi = point[0];
+                        int pj = point[1];
+                        if (flag[pi][pj] == 1 || grid[pi][pj] == '0') {
+                            continue;
+                        }
+                        queue.add(pi * m + pj);
+                        flag[pi][pj] = 1;
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+
+    private int[][] getNextPoint(int i, int j, int n, int m) {
+        int[][] res = new int[4][2];
+        int num = 0;
+        for (int[] dir : directions) {
+            int nexti = i + dir[0];
+            int nextj = j + dir[1];
+            if (nexti >= n || nexti < 0 || nextj >= m || nextj < 0) {
+                continue;
+            }
+            res[num] = new int[]{nexti, nextj};
+            num++;
+        }
+        return res;
+    }
+
+
+    /**
+     * 使用BFS
+     * 注意二维坐标转换时为 i*m + j,感觉还是麻烦了，不如再来个二维数组flag[][]
+     *
+     * @param grid
+     * @return
+     */
+    public int numIslands2(char[][] grid) {
         int n = grid.length;
         int m = grid[0].length;
         Queue<Integer> queue = new LinkedList<>();
