@@ -1,16 +1,12 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class N_Queens_51 {
     public static void main(String[] args) {
         N_Queens_51 res = new N_Queens_51();
-        int[][] flag = new int[4][4];
-        res.findQueenDir(2, 3, flag, 2);
-        System.out.println(Arrays.deepToString(flag));
-
+        List<List<String>> lists = res.solveNQueens(4);
+        System.out.println(lists.toString());
 
     }
 
@@ -18,21 +14,69 @@ public class N_Queens_51 {
     List<List<String>> res = new ArrayList<>();
 
     public List<List<String>> solveNQueens(int n) {
-        flag = new int[n][n];
-        dfs(0, 0, 1);
-        return null;
+        Set<Integer> slashSet1 = new HashSet<>();
+        Set<Integer> slashSet2 = new HashSet<>();
+        Set<Integer> lineSet = new HashSet<>();
+
+        List<Integer> pos = new ArrayList<>();
+        dfs(0, 0, n, slashSet1, slashSet2, lineSet, pos);
+
+        return res;
     }
 
-    private void dfs(int i, int j, int len) {
+    private void dfs(int i, int len, int n, Set<Integer> slashSet1, Set<Integer> slashSet2, Set<Integer> lineSet, List<Integer> pos) {
+        if (len == n) {
+            List<String> list = getStringByPos(pos, n);
+            res.add(list);
+            return;
+        }
+
+        for (int j = 0; j < n; j++) {
+            int slash1 = i + j;
+            int slash2 = i - j;
+            if (slashSet1.contains(slash1) || slashSet2.contains(slash2) || lineSet.contains(j)) {
+                continue;
+            }
+            slashSet1.add(slash1);
+            slashSet2.add(slash2);
+            lineSet.add(j);
+            pos.add(j);
+            dfs(i + 1, len + 1, n, slashSet1, slashSet2, lineSet, pos);
+            slashSet1.remove(slash1);
+            slashSet2.remove(slash2);
+            lineSet.remove(j);
+            pos.remove(pos.size() - 1);
+        }
+
+    }
+
+    private List<String> getStringByPos(List<Integer> pos, int n) {
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            Integer cur = pos.get(i);
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < n; j++) {
+                if (j == cur){
+                    sb.append("Q");
+                    continue;
+                }
+                sb.append(".");
+            }
+            res.add(sb.toString());
+        }
+        return res;
+    }
+
+    private void dfs1(int i, int j, int len) {
 
         findQueenDir(i, j, flag, 1);
         flag[i][j] = 2;
         if (len == flag.length) {
-            getResString
+//            getResString
             return;
         }
-        for (int[] pos : findNextPos()){
-            dfs(pos[0],pos[j],);
+        for (int[] pos : findNextPos()) {
+            dfs1(pos[0], pos[j], len + 1);
         }
 
 
