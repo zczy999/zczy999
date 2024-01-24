@@ -1,20 +1,22 @@
 package leetcode;
 
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import utils.LeetcodeInput;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class word_search_79 {
-    public static void main(String[] args) {
-//        String[][] s = {{"A", "B", "C", "E"}, {"S", "F", "C", "S"}, {"A", "D", "E", "E"}};
-        String[][] s = {{"a","b"}, {"c","d"}};
-        char[][] board = new char[s.length][s[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                board[i][j] = s[i][j].charAt(0);
-            }
-        }
+    public static void main(String[] args) throws Exception {
+        String json = "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]";
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.configure(com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+//        char[][] s = objectMapper.readValue(json, char[][].class);
+        char[][] s = LeetcodeInput.fromJson(json, char[][].class);
         word_search_79 res = new word_search_79();
-        boolean f = res.exist(board, "cdba");
+        boolean f = res.exist(s, "ABCCED");
         System.out.println(f);
     }
 

@@ -18,6 +18,11 @@ public class sort_list_148 {
         }
     }
 
+    /**
+     * 归并排序（从底至顶直接合并）
+     * @param head
+     * @return
+     */
     public ListNode sortList(ListNode head) {
         ListNode temp = head;
         int len = 0;
