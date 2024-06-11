@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class LeetCodeQuestionName {
 
     public static void main(String[] args) {
-        String input = "2290. Minimum Obstacle Removal to Reach Corner";
+        String input = "864. Shortest Path to Get All Keys";
         String formatted = formatString(input);
         System.out.println(formatted); // Outputs: Most_Stones_Removed
     }
