@@ -1,4 +1,4 @@
-package ZuoGod.BFS;
+package ZuoGod.Graph;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

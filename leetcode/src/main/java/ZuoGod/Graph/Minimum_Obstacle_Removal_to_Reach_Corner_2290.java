@@ -1,4 +1,4 @@
-package ZuoGod.BFS;
+package ZuoGod.Graph;
 
 import utils.LeetcodeInput;
 
