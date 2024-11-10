@@ -22,8 +22,6 @@ public class P1048 {
 
     public static int[] val = new int[MAXM];
 
-    public static int[] dp = new int[MAXT];
-
     public static int t, n;
 
     public static void main(String[] args) throws IOException {
@@ -58,6 +56,21 @@ public class P1048 {
             }
         }
         return dp[n][t];
+    }
+
+    /**
+     * 空间优化版本
+     *
+     * @return
+     */
+    private static int compute1() {
+        int[] dp = new int[t + 1];
+        for (int i = 1; i <= n; i++) {
+            for (int j = t; j >= cost[i]; j--) {
+                dp[j] = Math.max(dp[j], dp[j - cost[i]] + val[i]);
+            }
+        }
+        return dp[t];
     }
 
 }
