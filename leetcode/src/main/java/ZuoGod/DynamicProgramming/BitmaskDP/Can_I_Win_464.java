@@ -9,6 +9,7 @@ public class Can_I_Win_464 {
         if (desiredTotal > maxChoosableInteger * (maxChoosableInteger + 1) / 2) {
             return false;
         }
+        // dp[state] = 1表示当前先手赢，-1表示当前先手输
         int[] dp = new int[1 << (maxChoosableInteger + 1)];
         return f(maxChoosableInteger, desiredTotal, (1 << maxChoosableInteger + 1) - 1, 0, dp);
 
