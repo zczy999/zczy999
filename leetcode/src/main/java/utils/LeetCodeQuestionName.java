@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class LeetCodeQuestionName {
 
     public static void main(String[] args) {
-        String input = "864. Shortest Path to Get All Keys";
+        String input = "2435. Paths in Matrix Whose Sum Is Divisible by K";
         String formatted = formatString(input);
         System.out.println(formatted); // Outputs: Most_Stones_Removed
     }
