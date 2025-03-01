@@ -3,8 +3,8 @@ package ZuoGod.DynamicProgramming;
 public class Longest_Increasing_Subsequence_300 {
 
     public static void main(String[] args) {
-        Longest_Increasing_Subsequence_300  res = new Longest_Increasing_Subsequence_300();
-        int[] nums = {0,1,0,3,2,3};
+        Longest_Increasing_Subsequence_300 res = new Longest_Increasing_Subsequence_300();
+        int[] nums = {0, 1, 0, 3, 2, 3};
         System.out.println(res.lengthOfLIS(nums));
     }
 
@@ -34,12 +34,12 @@ public class Longest_Increasing_Subsequence_300 {
 
     private int findRightPos(int[] end, int len, int target) {
         int ans = -1;
-        int left = 0, right = len;
+        int left = 0, right = len - 1;
         while (left <= right) {
             int mid = (left + right) / 2;
             if (end[mid] >= target) {
                 ans = mid;
-                right = mid -1;
+                right = mid - 1;
             } else {
                 left = mid + 1;
             }

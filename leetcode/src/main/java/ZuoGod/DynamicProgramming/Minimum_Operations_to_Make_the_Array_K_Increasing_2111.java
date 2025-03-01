@@ -36,7 +36,7 @@ public class Minimum_Operations_to_Make_the_Array_K_Increasing_2111 {
 
     private int findRightPos(int[] end, int len, int target) {
         int ans = -1;
-        int left = 0, right = len;
+        int left = 0, right = len - 1;
         while (left <= right) {
             int mid = (left + right) / 2;
             if (end[mid] > target) {
