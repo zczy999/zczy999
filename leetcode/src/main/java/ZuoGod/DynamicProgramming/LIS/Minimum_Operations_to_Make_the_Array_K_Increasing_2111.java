@@ -1,4 +1,4 @@
-package ZuoGod.DynamicProgramming;
+package ZuoGod.DynamicProgramming.LIS;
 
 public class Minimum_Operations_to_Make_the_Array_K_Increasing_2111 {
 

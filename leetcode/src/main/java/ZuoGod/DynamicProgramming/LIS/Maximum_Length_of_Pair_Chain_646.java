@@ -1,4 +1,4 @@
-package ZuoGod.DynamicProgramming;
+package ZuoGod.DynamicProgramming.LIS;
 
 import java.util.Arrays;
 

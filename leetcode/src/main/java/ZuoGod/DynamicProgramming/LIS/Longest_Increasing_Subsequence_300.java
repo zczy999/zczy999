@@ -1,4 +1,4 @@
-package ZuoGod.DynamicProgramming;
+package ZuoGod.DynamicProgramming.LIS;
 
 public class Longest_Increasing_Subsequence_300 {
 
