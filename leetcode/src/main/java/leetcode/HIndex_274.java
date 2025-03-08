@@ -3,7 +3,44 @@ package leetcode;
 import java.util.Arrays;
 
 public class HIndex_274 {
-    public static int hIndex(int[] citations) {
+
+    /**
+     * 二分答案法 左神做法
+     *
+     * @param citations
+     * @return
+     */
+    public int hIndex(int[] citations) {
+        int left = 0, right = citations.length;
+        int res = 0;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (f(mid,citations) >= mid) {
+                res = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return res;
+    }
+    private int f(int mid, int[] citations) {
+        int count = 0;
+        for (int i = 0; i < citations.length; i++) {
+            if (citations[i] >= mid) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 二分答案法 九章模版
+     *
+     * @param citations
+     * @return
+     */
+    public static int hIndex2(int[] citations) {
         if (citations.length == 1 && citations[0] == 0) {
             return 0;
         }
@@ -29,7 +66,6 @@ public class HIndex_274 {
     }
 
     /**
-     *
      * @param citations
      * @return
      */

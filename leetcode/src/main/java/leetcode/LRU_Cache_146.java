@@ -1,10 +1,11 @@
 package leetcode;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LRU_Cache_146 {
 
-    public HashMap<Integer, Node> LRUMap;
+    public Map<Integer, Node> LRUMap;
 
     int capacity, nowCapacity;
 
