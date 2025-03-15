@@ -1,4 +1,4 @@
-package leetcode;
+package ZuoGod.SlidingWindow;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +11,14 @@ public class Longest_Substring_Without_Repeating_Characters_3 {
     }
 
     public int lengthOfLongestSubstring(String s) {
+
+
+        return 0;
+    }
+
+
+
+    public int lengthOfLongestSubstring1(String s) {
         Map<Character, Integer> map = new HashMap<>();
 
         int index = 0;
@@ -29,7 +37,7 @@ public class Longest_Substring_Without_Repeating_Characters_3 {
         return max;
     }
 
-    public int lengthOfLongestSubstring1(String s) {
+    public int lengthOfLongestSubstring2(String s) {
         Map<Character, Integer> map = new HashMap<>();
 
         int index = 0;
