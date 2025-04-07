@@ -5,13 +5,13 @@ public class Binary_Tree_Maximum_Path_Sum_124 {
     int maxSum = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
-        getMaxPathSum(root);
+        int maxPathSum = getMaxPathSum(root);
         return maxSum;
     }
 
     /**
-     * 当前节点的最大路径： max(自己，自己+左边，自己+右边，自己 + 左边 + 右边）
-     * 当前节点作为子节点时的贡献：max(自己，自己+左边，自己+右边）
+     * 从当前节点 node 出发，向下延伸所能获得的最大路径和
+     *
      * @param root
      * @return
      */
@@ -19,16 +19,19 @@ public class Binary_Tree_Maximum_Path_Sum_124 {
         if (root == null) {
             return 0;
         }
+        if (root.left == null && root.right == null) {
+            //如果树只有一个节点，maxSum需要被更新
+            maxSum = Math.max(maxSum, root.val);
+            return root.val;
+        }
 
-        int leftMaxSum = getMaxPathSum(root.left);
-        int rightMaxSum = getMaxPathSum(root.right);
-        int res = Math.max(root.val, root.val + leftMaxSum);
-        res = Math.max(res, root.val + rightMaxSum);
+        //如果子节点为负 则不选择 为0
+        int leftMaxSum = Math.max(getMaxPathSum(root.left), 0) + root.val;
+        int rightMaxSum = Math.max(getMaxPathSum(root.right), 0) + root.val;
 
-        int res1 = Math.max(res, root.val + leftMaxSum + rightMaxSum);
-        maxSum = Math.max(Math.max(maxSum, res1),res);
+        maxSum = Math.max(maxSum, leftMaxSum + rightMaxSum - root.val);
 
-        return res;
+        return Math.max(leftMaxSum, rightMaxSum);
     }
 
 
