@@ -1,4 +1,4 @@
-package leetcode;
+package ZuoGod.DynamicProgramming.TreeDP;
 
 public class Validate_Binary_Search_Tree_98 {
 
