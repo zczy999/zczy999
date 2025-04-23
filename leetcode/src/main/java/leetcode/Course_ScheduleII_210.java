@@ -10,14 +10,48 @@ public class Course_ScheduleII_210 {
         int[] order = res.findOrder(2, prerequisites);
         System.out.println(Arrays.toString(order));
     }
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] res = new int[numCourses];
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            graph.add(new ArrayList<>());
+        }
+        int[] indegree = new int[numCourses];
+        for (int i = 0; i < prerequisites.length; i++) {
+            int[] cur = prerequisites[i];
+            graph.get(cur[1]).add(cur[0]);
+            indegree[cur[0]]++;
+        }
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                deque.addLast(i);
+            }
+        }
+        int count = 0;
+        while (!deque.isEmpty()) {
+            int cur = deque.pollFirst();
+            res[count++] = cur;
+            for (Integer next : graph.get(cur)) {
+                if (--indegree[next] == 0){
+                    deque.addLast(next);
+                }
+            }
+        }
+        return count == numCourses ? res : new int[0];
+    }
+
+
     int[] res;
     int index;
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
+
+    public int[] findOrder1(int numCourses, int[][] prerequisites) {
         int[] flag = new int[numCourses];
         Map<Integer, List<Integer>> graph = new HashMap<>();
         for (int i = 0; i < numCourses; i++) {
             List<Integer> list = new ArrayList<>();
-            graph.put(i,list);
+            graph.put(i, list);
         }
         for (int i = 0; i < prerequisites.length; i++) {
             int[] cur = prerequisites[i];
