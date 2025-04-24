@@ -39,6 +39,7 @@ public class Course_ScheduleII_210 {
                 }
             }
         }
+        //这一判断图有无环 很重要
         return count == numCourses ? res : new int[0];
     }
 
