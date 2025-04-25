@@ -11,7 +11,7 @@ package jdk.concurrent.producer_consumer;
  * n=3, ((())())((( ✅
  * n=3, (((()))), (())) ❌
  */
-public class Producer_Consumer_1 implements Producer_Consumer{
+public class Producer_Consumer_synchronized implements Producer_Consumer{
 
 
     /**
@@ -21,7 +21,7 @@ public class Producer_Consumer_1 implements Producer_Consumer{
     public static void main(String[] args) {
         int n = 3;
         int threadNum = 5;
-        Producer_Consumer_1 producer_consumer1 = new Producer_Consumer_1(n);
+        Producer_Consumer_synchronized producer_consumer1 = new Producer_Consumer_synchronized(n);
         for (int i = 0; i < threadNum; i++) {
             new Thread(new Producer(producer_consumer1)).start();
         }
@@ -36,7 +36,7 @@ public class Producer_Consumer_1 implements Producer_Consumer{
     private int MAX_SIZE;
     private int count;
 
-    public Producer_Consumer_1(int MAX_SIZE) {
+    public Producer_Consumer_synchronized(int MAX_SIZE) {
         this.MAX_SIZE = MAX_SIZE;
         this.count = 0;
     }
