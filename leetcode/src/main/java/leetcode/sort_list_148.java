@@ -18,73 +18,7 @@ public class sort_list_148 {
         }
     }
 
-    /**
-     * 归并排序（从底至顶直接合并）
-     * @param head
-     * @return
-     */
     public ListNode sortList(ListNode head) {
-        ListNode temp = head;
-        int len = 0;
-        while (temp != null) {
-            temp = temp.next;
-            len++;
-        }
-        ListNode res = head;
-        int N = 1;
-        for (; N < len; N = N * 2) {
-
-            ListNode cur = res;
-            ListNode nextNode = null;
-            for (int i = 0; i + N < len; i = i + 2 * N) {
-                ListNode next = cur;
-                ListNode start = cur, pre = cur;
-                ListNode mid = start;
-                int num = 0;
-                //找到中间的部分，并且分离
-                while (num < N) {
-                    pre = mid;
-                    mid = mid.next;
-                    num++;
-                }
-                pre.next = null;
-                ListNode end = mid;
-                num = 0;
-                //找到两段链表最后的部分并且将其与主链分离
-                while (end != null && num < N) {
-                    next = end;
-                    end = end.next;
-                    num++;
-                }
-                if (end != null) {
-                    next.next = null;
-                    cur = end;
-                } else {
-                    cur = null;
-                }
-                ListNode listNode = mergeTwoLists(start, mid);
-                //将上一个已经合并后的链表的最后与现在合并的链表头连起来
-                if (nextNode != null){
-                    nextNode.next = listNode;
-                }
-                if (i == 0) {
-                    res = listNode;
-                }
-
-                while (listNode != null) {
-                    nextNode = listNode;
-                    listNode = listNode.next;
-                }
-                //将合并后链表与刚刚断开的主链表连起来，防止这最后一部分不进入循环出现bug
-                if (cur != null){
-                    nextNode.next = cur;
-                }
-            }
-        }
-        return res;
-    }
-
-    public ListNode sortList1(ListNode head) {
         ListNode ans = mergeSort(head);
         return ans;
 
@@ -105,8 +39,8 @@ public class sort_list_148 {
      * 知识点3：合并两个已排好序的链表为一个新的有序链表
      */
     private ListNode mergeSort(ListNode head) {
-        if (head == null) {
-            return null;
+        if (head == null || head.next == null) {
+            return head;
         }
         ListNode start = head, end = head, mid = head;
         ListNode pre = start;
