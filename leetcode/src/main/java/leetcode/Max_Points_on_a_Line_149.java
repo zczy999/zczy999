@@ -58,9 +58,6 @@ public class Max_Points_on_a_Line_149 {
 
 
     private int getGCD(int x, int y) {
-        if (y > x) {
-            return getGCD(y, x);
-        }
         if (y == 0) {
             return x;
         }
