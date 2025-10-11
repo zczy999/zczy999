@@ -112,41 +112,136 @@ leetcode/src/main/java/
 
 ## Git 提交规范
 
-项目**强制要求**使用 `commit_message.txt` 文件进行提交：
+### ⚠️ 强制性要求
+
+项目**强制要求**使用 `commit_message.txt` 文件进行提交，**禁止直接使用 `git commit -m` 命令**：
 
 ```bash
+# ❌ 禁止的提交方式
+git commit -m "简单提交信息"  # 绝对禁止！
+git commit -am "快速提交"      # 绝对禁止！
+
+# ✅ 唯一允许的提交方式
 # 1. 添加变更
 git add .
 
-# 2. 创建提交信息文件
-echo "feat(leetcode): 实现两数之和算法" > commit_message.txt
+# 2. 创建提交信息文件（必须步骤）
+echo "feat(leetcode): 实现两数之和算法
 
-# 3. 使用文件提交
+详细说明实现的算法和优化点
+
+Changes:
+- leetcode/Two_Sum_1.java: 添加哈希表解法
+- leetcode/Two_Sum_1.java: 优化时间复杂度到O(n)" > commit_message.txt
+
+# 3. 使用文件提交（必须步骤）
 git commit -F commit_message.txt
 
-# 4. 清理临时文件
+# 4. 清理临时文件（必须步骤）
 rm commit_message.txt
 ```
 
-### 提交信息格式
-遵循约定式提交规范：`<类型>[可选scope]: <描述>`
+### 📋 约定式提交规范
 
-常用类型：
-- `feat`: 新功能（新增算法题解）
-- `fix`: 修复bug
-- `refactor`: 代码重构
-- `test`: 添加测试
-- `docs`: 文档更新
-- `style`: 代码格式调整
-- `perf`: 性能优化
+遵循[约定式提交](https://www.conventionalcommits.org/zh-hans)规范：
 
-示例：
 ```
-feat(leetcode): 添加动态规划解法 - 最长递增子序列
-fix(ZuoGod): 修复并查集路径压缩问题
-refactor(heap): 优化堆排序实现
-test(leetcode): 为二叉树问题添加边界测试
+<类型>[可选scope]: <描述>
+
+[可选 body]
+
+[可选 footer(s)]
 ```
+
+### 🏷️ 提交类型
+
+| 类型 | 说明 | 示例 |
+|------|------|------|
+| `feat` | 新功能（新增算法题解） | `feat(leetcode): 添加二叉树遍历算法` |
+| `fix` | 错误修复 | `fix(ZuoGod): 修复并查集路径压缩问题` |
+| `docs` | 文档变更 | `docs: 更新算法复杂度说明` |
+| `style` | 代码格式化（不影响代码逻辑） | `style: 统一代码缩进格式` |
+| `refactor` | 代码重构（不新增功能或修复bug） | `refactor(heap): 优化堆排序实现` |
+| `test` | 测试相关 | `test(leetcode): 添加边界测试用例` |
+| `perf` | 性能优化 | `perf(dp): 优化动态规划空间复杂度` |
+| `chore` | 构建过程或辅助工具的变动 | `chore: 更新Maven依赖版本` |
+| `ci` | CI配置相关 | `ci: 添加GitHub Actions工作流` |
+| `build` | 构建系统或外部依赖 | `build: 升级JUnit到4.13` |
+
+### 🎯 作用域 (Scope)
+
+本项目常用作用域：
+- `leetcode` - LeetCode题解相关
+- `ZuoGod` - 左神算法课程实现
+- `jdk` - JDK模块相关
+- `dp` - 动态规划专题
+- `heap` - 堆相关算法
+- `graph` - 图算法相关
+- `test` - 测试相关
+
+### 📝 提交信息模板
+
+#### 基础模板
+```
+<类型>(scope): <简洁描述>
+
+<详细说明 what 和 why>
+
+Changes:
+- 文件1: 具体变更说明
+- 文件2: 具体变更说明
+
+Features/Fixes:
+* 功能点1
+* 功能点2
+
+Closes #issue编号
+```
+
+#### 实际示例
+
+**新功能示例：**
+```
+feat(leetcode): 添加三数之和算法实现
+
+实现了LeetCode第15题三数之和的双指针解法
+优化了去重逻辑，时间复杂度O(n²)
+
+Changes:
+- leetcode/Three_Sum_15.java: 新增双指针解法
+- leetcode/Three_Sum_15.java: 添加完整测试用例
+
+Features:
+* 双指针优化算法
+* 自动去重处理
+* 边界条件处理
+
+Closes #15
+```
+
+**修复示例：**
+```
+fix(ZuoGod/UnionFind): 修复并查集路径压缩错误
+
+修复了在特定情况下路径压缩导致的父节点指向错误
+添加了额外的测试用例验证修复效果
+
+Changes:
+- ZuoGod/UnionFind/Number_of_Good_Paths_2421.java: 修正find方法逻辑
+- ZuoGod/UnionFind/Number_of_Good_Paths_2421.java: 添加边界测试
+
+Fixes #234
+```
+
+### ✅ 提交前检查清单
+
+提交前请确认：
+- [ ] 使用 `commit_message.txt` 文件提交（强制要求）
+- [ ] 提交类型正确
+- [ ] 作用域准确（如适用）
+- [ ] 描述使用祈使句，简洁明了
+- [ ] 包含Changes部分列出文件变更
+- [ ] 关联相关issue（如适用）
 
 ## 依赖管理
 
