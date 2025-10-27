@@ -42,7 +42,7 @@ public class LeetCodeQuestionName {
      */
     public static void main(String[] args) {
         // 简单演示
-        String input = "48. Rotate Image";
+        String input = "86. Partition List";
         String formatted = formatString(input);
         System.out.println("简单演示:");
         System.out.println("输入: \"" + input + "\"");
